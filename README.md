@@ -50,10 +50,14 @@
 
 ### Capturas de pantalla
 
-![PassForge Pro - Vista principal](https://i.imgur.com/6vP2kLm.png)  
-*Interfaz principal con estilo cyberpunk neon*
 
-![Historial y copiado](https://i.imgur.com/xR9mP8s.png)  
-*Historial persistente y feedback visual al copiar*
+### *Interfaz principal con estilo cyberpunk neon*
+
+<img src="Imágenes/Interfaz-principal.png"> 
+
+### *Historial persistente y feedback visual al copiar*
+
+<img src="Imágenes/Historial.png">
+
 
 
