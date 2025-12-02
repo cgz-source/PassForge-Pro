@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PassForge Pro - Generador de Contraseñas</title>
+  
+  <!-- Fuentes + iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+    :root {
+      --bg: #0d0d1f;
+      --card: #12122e;
+      --accent: #00f0ff;
+      --accent-dark: #00b8cc;
+      --text: #e0f8ff;
+      --text-muted: #88c0d0;
+      --border: #1e3a5f;
+      --glow: 0 0 20px rgba(0, 240, 255, 0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0,240,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,240,255,0.08) 0%, transparent 50%);
+    }
+    .container { max-width: 480px; width: 100%; }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #00f0ff, #00b8cc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(0,240,255,0.6);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--glow), inset 0 0 30px rgba(0,240,255,0.05);
+    }
+    .section { margin-bottom: 1.8rem; }
+    .length-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .length-value {
+      color: var(--accent);
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 10px;
+      border-radius: 10px;
+      background: #1e3a5f;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--glow);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow);
+    }
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #000;
+      font-weight: 900;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: var(--glow);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,240,255,0.4);
+    }
+    .results { margin-top: 1.5rem; }
+    .password-item {
+      background: rgba(0,240,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 1.3rem;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .history-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem 0 1rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .clear-btn {
+      color: #ff3366;
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .history-item {
+      background: rgba(30,58,95,0.4);
+      border-radius: 10px;
+      padding: 0.9rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      position: relative;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>PassForge Pro</h1>
+
+    <div class="card">
+      <!-- Sección de longitud -->
+      <div class="section">
+        <div class="length-row">
+          <span>Longitud (8-128)</span>
+          <span class="length-value" id="lengthValue">16</span>
+        </div>
+        <input type="range" id="lengthSlider" min="8" max="128" value="16">
+      </div>
+
+      <!-- Opciones de caracteres -->
+      <div class="options">
+        <label class="checkbox-label"><input type="checkbox" id="uppercase" checked> Mayúsculas</label>
+        <label class="checkbox-label"><input type="checkbox" id="numbers" checked> Números</label>
+        <label class="checkbox-label"><input type="checkbox" id="symbols" checked> Símbolos</label>
+        <label class="checkbox-label"><input type="checkbox" id="ambiguous"> Excluir ambiguos</label>
+        <label class="checkbox-label"><input type="checkbox" id="multiple"> Generar 4 contraseñas</label>
+      </div>
+
+      <!-- Botón principal -->
+      <button class="btn" id="generateBtn">
+        <span class="material-symbols-outlined">refresh</span>
+        Generar Contraseña(s)
+      </button>
+
+      <!-- Área donde se muestran las contraseñas generadas -->
+      <div class="results" id="results"></div>
+    </div>
+
+    <!-- Historial persistente -->
+    <div class="card" style="margin-top: 2rem;">
+      <div class="history-title">
+        <span>Historial de Contraseñas</span>
+        <button class="clear-btn" id="clearHistory">Borrar todo</button>
+      </div>
+      <div id="historyList">
+        <p style="text-align:center;color:#555;margin-top:1rem;">No hay historial aún</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    // Código de JavaScript 
+
+    //  Referencias a elementos del DOM 
+    const lengthSlider   = document.getElementById('lengthSlider');   // Slider de longitud
+    const lengthValue    = document.getElementById('lengthValue');    // Muestra el número actual
+    const uppercase      = document.getElementById('uppercase');      // Checkbox mayúsculas
+    const numbers        = document.getElementById('numbers');        // Checkbox números
+    const symbols        = document.getElementById('symbols');        // Checkbox símbolos
+    const ambiguous      = document.getElementById('ambiguous');      // Checkbox excluir ambiguos
+    const multiple       = document.getElementById('multiple');       // Checkbox generar 4
+    const generateBtn    = document.getElementById('generateBtn');    // Botón generar
+    const results        = document.getElementById('results');        // Contenedor de resultados
+    const historyList    = document.getElementById('historyList');    // Lista del historial
+    const clearHistory   = document.getElementById('clearHistory');   // Botón borrar historial
+
+    // Conjuntos de caracteres disponibles 
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums  = '0123456789';
+    const syms  = '!@#$%^&*_-+=';
+    const avoid = 'Il1O0'; // Caracteres que se confunden visualmente
+
+    // Actualizar valor visual del slider en tiempo real
+    lengthSlider.addEventListener('input', () => {
+      lengthValue.textContent = lengthSlider.value;
+    });
+
+    //  Función principal: genera una contraseña segura 
+    function generatePassword() {
+      let chars = lower;
+
+      // Añadimos los conjuntos seleccionados por el usuario
+      if (uppercase.checked) chars += upper;
+      if (numbers.checked)   chars += nums;
+      if (symbols.checked)   chars += syms;
+
+      // Si está activada la exclusión de ambiguos, los filtramos
+      if (ambiguous.checked) {
+        chars = chars.split('').filter(c => !avoid.includes(c)).join('');
+      }
+
+      // Si no hay caracteres disponibles, evitamos bucle infinito
+      if (chars.length === 0) return 'Error: sin caracteres';
+
+      const length = parseInt(lengthSlider.value);
+      let password = '';
+
+      // Generación carácter por carácter con criptografía segura
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        password += chars.charAt(randomIndex);
+      }
+
+      return password;
+    }
+
+    // Mostrar 1 o 4 contraseñas según la opción seleccionada 
+    function showPasswords() {
+      const count = multiple.checked ? 4 : 1;
+      results.innerHTML = ''; // Limpiamos resultados anteriores
+
+      for (let i = 0; i < count; i++) {
+        const password = generatePassword();
+
+        // Creamos el contenedor de cada contraseña
+        const item = document.createElement('div');
+        item.className = 'password-item';
+        item.innerHTML = `
+          <span>${password}</span>
+          <button class="copy-btn" data-pw="${password}">
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+        `;
+        results.appendChild(item);
+
+        // Guardamos automáticamente en el historial
+        addToHistory(password);
+      }
+
+      // Añadimos funcionalidad de copiar al portapapeles 
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.onclick = () => {
+          const textToCopy = btn.dataset.pw;
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            btn.innerHTML = '<span class="material-symbols-outlined" style="color:#0f0;">check</span>';
+            setTimeout(() => {
+              btn.innerHTML = '<span class="material-symbols-outlined">content_copy</span>';
+            }, 2000);
+          });
+        };
+      });
+    }
+
+    // Guardar contraseña en el historial (localStorage) 
+    function addToHistory(password) {
+      let history = JSON.parse(localStorage.getItem('passforge') || '[]');
+
+      const entry = {
+        pass: password.length > 25 ? password.substring(0,25)+'...' : password,
+        full: password,
+        len: lengthSlider.value,
+        date: new Date().toLocaleString('es-ES')
+      };
+
+      history.unshift(entry);           // Añadimos al principio
+      if (history.length > 20) history.pop(); // Máximo 20 entradas
+      localStorage.setItem('passforge', JSON.stringify(history));
+
+      renderHistory();                  // Actualizamos vista
+    }
+
+    // === Renderizar el historial en pantalla ===
+    function renderHistory() {
+      const history = JSON.parse(localStorage.getItem('passforge') || '[]');
+
+      if (history.length === 0) {
+        historyList.innerHTML = '<p style="text-align:center;color:#555;margin-top:1rem;">No hay historial aún</p>';
+        return;
+      }
+
+      historyList.innerHTML = history.map(entry => `
+        <div class="history-item">
+          <div style="color:#00f0ff;font-family:monospace;">${entry.pass}</div>
+          <div style="font-size:0.85rem;color:#88c0d0;">Longitud: ${entry.len} • ${entry.date}</div>
+          <button style="position:absolute;top:10px;right:10px;" 
+                  onclick="navigator.clipboard.writeText('${entry.full}').then(()=>{this.innerHTML='Check'})" 
+                  class="copy-btn">
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // === Borrar todo el historial ===
+    clearHistory.onclick = () => {
+      if (confirm('¿Estás seguro de borrar todo el historial?')) {
+        localStorage.removeItem('passforge');
+        renderHistory();
+      }
+    };
+
+    // === Eventos principales ===
+    generateBtn.onclick = showPasswords;   // Botón generar
+    renderHistory();                       // Cargar historial al iniciar
+  </script>
+</body>
+</html>
