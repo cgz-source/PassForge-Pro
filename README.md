@@ -1,13 +1,13 @@
-# PassForge Pro – Generador de Contraseñas Ultra Seguro (Cyberpunk Edition)  
+# PassForge Pro – Generador de Contraseñas Ultra Seguro (Cyberpunk Edition)  🔒
 
 **Proyecto Final – Aplicación web 100% funcional con diseño profesional**  
 **Generador de Contraseñas – Opción 2 (elegida por su simplicidad, seguridad y alto impacto visual)**  
 
-**Enlace en vivo →** https://cgz-source/passforge-pro  
+**Enlace en vivo →** https://cgz-source.github.io/PassForge-Pro/ 
 
 ---
 
-### Herramientas de IA utilizadas 
+### 💻 Herramientas de IA utilizadas 
 
 | Herramienta          | Uso real en el proyecto                                                                                 | Evidencia en el código / resultado final                                      |
 |----------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
@@ -15,11 +15,11 @@
 | **Nerd.lat**         | Exploración profunda para generar lógica avanzada de generación segura y medidor de fuerza             | Inspiración directa en la lógica final (aunque se reimplementó en JS vainilla por compatibilidad) |
 | **Magic Loops**      | Generación de snippets para manejo de localStorage, historial persistente y copiado al portapapeles   | Funcionalidades de historial y copiar con feedback visual                     |
 
-> **Nota importante:** Se priorizó la máxima compatibilidad y rendimiento utilizando **JavaScript vainilla + CSS puro** (sin frameworks ni dependencias externas), logrando así una aplicación instantánea, segura y desplegable en cualquier servidor estático (GitHub Pages).
+> **Nota importante:** Se priorizó la máxima compatibilidad y rendimiento utilizando **JavaScript vainilla + CSS puro** (sin frameworks ni dependencias externas), logrando así una aplicación instantánea, segura y desplegable en cualquier servidor estático.
 
 ---
 
-### Características implementadas (todas funcionales)
+### ⚙️ Características implementadas 
 
 - Generación de contraseñas ultra seguras (8–128 caracteres)  
 - Opciones completas: mayúsculas, números, símbolos, excluir caracteres ambiguos (I l 1 O 0)  
@@ -36,7 +36,7 @@
 
 ---
 
-### Tecnologías utilizadas
+### 🔧 Tecnologías utilizadas 
 
 - **HTML5** – Estructura semántica  
 - **CSS3 puro** – Estilo cyberpunk con variables, gradientes, glow y animaciones  
@@ -48,7 +48,7 @@
 
 ---
 
-### Capturas de pantalla
+### 📷 Capturas de pantalla 
 
 
 ### *Interfaz principal con estilo cyberpunk neon*
