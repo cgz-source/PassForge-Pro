@@ -343,7 +343,7 @@
       renderHistory();                  // Actualizamos vista
     }
 
-    // === Renderizar el historial en pantalla ===
+    // Renderizar el historial en pantalla
     function renderHistory() {
       const history = JSON.parse(localStorage.getItem('passforge') || '[]');
 
@@ -365,7 +365,7 @@
       `).join('');
     }
 
-    // === Borrar todo el historial ===
+    // Borrar todo el historial 
     clearHistory.onclick = () => {
       if (confirm('¿Estás seguro de borrar todo el historial?')) {
         localStorage.removeItem('passforge');
@@ -373,7 +373,7 @@
       }
     };
 
-    // === Eventos principales ===
+    // Eventos principales 
     generateBtn.onclick = showPasswords;   // Botón generar
     renderHistory();                       // Cargar historial al iniciar
   </script>
